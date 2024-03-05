@@ -49,12 +49,12 @@ class User extends Authenticatable
 
     public function organizer()
     {
-        return $this->hasMany(Organizer::class);
+        return $this->hasOne(Organizer::class);
     }
 
     public function client()
     {
-        return $this->hasMany(Client::class);
+        return $this->hasOne(Client::class);
     }
 
     public function admin()

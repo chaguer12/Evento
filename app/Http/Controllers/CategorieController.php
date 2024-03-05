@@ -12,7 +12,10 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Categorie::all();
+        return view('client.categorie',[
+            'categories' => $categories,
+        ]);
     }
 
     /**
