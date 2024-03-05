@@ -43,7 +43,7 @@
             <x-input-label for="role" :value="__('Select role')" />
             <select id="role" name="role" class="form-select" required>
                 <option value="" disabled selected>Select a role</option>
-                <option value="organiser">Organiser</option>
+                <option value="organizer">Organizer</option>
                 <option value="client">Client</option>
             </select>
         </div>

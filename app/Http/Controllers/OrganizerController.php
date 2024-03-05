@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use App\Models\Organizer;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class OrganizerController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
