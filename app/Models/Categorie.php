@@ -9,7 +9,12 @@ class Categorie extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'cat_name' => 'required',
+    ];
+
     public function event(){
         return $this->hasMany(Event::class);
     }
+
 }

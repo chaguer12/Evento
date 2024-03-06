@@ -34,9 +34,12 @@
                                 </th>
                             </tr>
                         </thead>
+                        
                         <tbody class="bg-white divide-y divide-gray-200">
                            @foreach($users as $user)
+                           
                             <tr>
+
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm text-gray-900">{{$user->id}}</div>
                                 </td>
@@ -77,15 +80,55 @@
                 <p>Create a category</p>
                 <form action="{{ route('categories.store')}}" method="post" enctype="multipart/form-data">
                   @csrf
-                  <input type="text" name="categorie" placeholder="categorie" class="border rounded py-2 px-4">
+                  <input type="text" name="cat_name" placeholder="categorie" class="border rounded py-2 px-4">
 
                   <button type="submit" class="bg-[#4338ca] hover:shadow-lg text-white font-bold py-2 px-4 rounded">
                     Create
                   </button>
                 </form>
               </div>
+              <table class="min-w-full">
+                <!-- Table header -->
+                <thead>
+                  <tr>
+                    <th class="px-4 py-2">#</th>
+                    <th class="px-4 py-2">Name</th>
+                    <th class="px-4 py-2">Actions</th>
+                  </tr>
+                </thead>
+                <!-- Table body -->
+                <tbody>
+                  <!-- Table rows -->
+
+                  @foreach($categories as $categorie)
+                  <tr>
+                    <td class="border px-4 py-2">{{$categorie->id}}</td>
+                    <td class="border px-4 py-2">{{$categorie->cat_name}}
+                      <input hidden id="spec_input" type="text" name="id" value="{{$categorie->categorie_name}}">
+                    </td>
+                    <td class="border px-4 py-2">
+                      <!-- CRUD actions -->
+                      <button href="" value="{{$categorie->id}}" class="edit-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Edit
+                      </button>
+                      <form class="" action="{{ route('categorie.destroy',['categorie' => $categorie->id])}}" method="post">
+                        @csrf
+                        @method('DELETE')
+
+                        <input hidden id="spec_input" type="text" name="id" value="{{$categorie->categorie_name}}">
+                        <button  onclick="return confirm('Are you sure to delete?')" class="bg-[#ef4444] text-white font-bold py-2 px-4 rounded">
+                          Delete
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                  @endforeach
+
+
+                </tbody>
+              </table>
                    
-                </div>
+            </div>
             </div>
         </div>
     </section>
