@@ -106,12 +106,15 @@
                     <td class="border px-4 py-2">{{$categorie->cat_name}}
                       <input hidden id="spec_input" type="text" name="id" value="{{$categorie->categorie_name}}">
                     </td>
-                    <td class="border px-4 py-2">
+                    <td class="border px-4 py-2 flex gap-4 justify-center">
                       <!-- CRUD actions -->
-                      <button href="" value="{{$categorie->id}}" class="edit-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                     <div>
+                     <button href="" value="{{$categorie->id}}" class="edit-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Edit
                       </button>
-                      <form class="" action="{{ route('categorie.destroy',['categorie' => $categorie->id])}}" method="post">
+                     </div>
+                      <div>
+                      <form class="" action="" method="post">
                         @csrf
                         @method('DELETE')
 
@@ -119,6 +122,7 @@
                         <button  onclick="return confirm('Are you sure to delete?')" class="bg-[#ef4444] text-white font-bold py-2 px-4 rounded">
                           Delete
                         </button>
+                      </div>
                       </form>
                     </td>
                   </tr>

@@ -10,7 +10,7 @@ class Categorie extends Model
     use HasFactory;
 
     protected $fillable = [
-        'cat_name' => 'required',
+        'cat_name',
     ];
 
     public function event(){

@@ -32,6 +32,9 @@ class CategorieController extends Controller
      */
     public function store(CategorieRequest $Request)
     {
+        
+        $category = Categorie::create($Request->validated());
+        return redirect()->back();
        
     }
 
