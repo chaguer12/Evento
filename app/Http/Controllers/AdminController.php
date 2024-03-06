@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -12,7 +13,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return view('admin.dashboard',compact('users'));
     }
 
     /**
@@ -61,5 +63,22 @@ class AdminController extends Controller
     public function destroy(Admin $admin)
     {
         //
+    }
+
+    public function block(Request $request){
+        $id = $request->id;
+        $user = User::find($id);
+        $user->update(['blocked' =>1]);
+        return redirect()->back();
+        
+
+    }
+    public function unblock(Request $request){
+        $id = $request->id;
+        $user = User::find($id);
+        $user->update(['blocked' =>0]);
+        return redirect()->back();
+        
+
     }
 }

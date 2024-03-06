@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\OrganizerController;
 use App\Http\Controllers\ProfileController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,9 +23,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('categories', CategorieController::class);
+Route::resource('admin',AdminController::class);
+Route::resource('client',ClientController::class);
+route::resource('organizer',OrganizerController::class);
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    
+    return view('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('block-user', [AdminController::class, 'block'])->name('block-user');
+Route::get('unblock-user', [AdminController::class, 'unblock'])->name('unblock-user');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
