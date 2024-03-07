@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CategorieRequest;
 use App\Models\Categorie;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CategorieController extends Controller
@@ -13,10 +14,9 @@ class CategorieController extends Controller
      */
     public function index()
     {
+        $users = User::with('roles')->get();
         $categories = Categorie::all();
-        return view('client.categorie',[
-            'categories' => $categories,
-        ]);
+        return view('admin.dashboard',compact('users','categories'));
     }
 
     /**
@@ -57,16 +57,25 @@ class CategorieController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Categorie $categorie)
+    public function update(CategorieRequest $Request,Categorie $category)
     {
-        //
+        
+        if(!empty($Request->cat_name)){
+            Categorie::where('id',$Request->id)->update(['cat_name' => $Request->cat_name]);
+            return redirect()->back();
+        }else{
+            
+            return redirect()->back();
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Categorie $categorie)
+    public function destroy($id)
     {
-        //
+        if(Categorie::destroy($id)){
+            return redirect()->back();
+        }
     }
 }

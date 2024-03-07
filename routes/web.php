@@ -5,6 +5,7 @@ use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\OrganizerController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Categorie;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,9 @@ Route::resource('client',ClientController::class);
 route::resource('organizer',OrganizerController::class);
 Route::get('/dashboard', function () {
     
-    return view('admin.dashboard');
+        $users = User::with('roles')->get();
+        $categories = Categorie::all();
+        return view('admin.dashboard',compact('users','categories'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('block-user', [AdminController::class, 'block'])->name('block-user');
 Route::get('unblock-user', [AdminController::class, 'unblock'])->name('unblock-user');
