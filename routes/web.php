@@ -33,6 +33,12 @@ Route::get('/dashboard', function () {
         $categories = Categorie::all();
         return view('admin.dashboard',compact('users','categories'));
 })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/category', function () {
+    
+        
+        $categories = Categorie::all();
+        return view('client.categorie',compact('categories'));
+})->name('category');
 Route::get('block-user', [AdminController::class, 'block'])->name('block-user');
 Route::get('unblock-user', [AdminController::class, 'unblock'])->name('unblock-user');
 
