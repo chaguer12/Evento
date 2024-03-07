@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Event;
-use App\trait\ImageUpload;
+use App\Models\Image;
 use Illuminate\Http\Request;
 
-class EventController extends Controller
+class ImageController extends Controller
 {
-    use ImageUpload;
     /**
      * Display a listing of the resource.
      */
@@ -36,7 +34,7 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Event $event)
+    public function show(Image $image)
     {
         //
     }
@@ -44,7 +42,7 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Event $event)
+    public function edit(Image $image)
     {
         //
     }
@@ -52,7 +50,7 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, Image $image)
     {
         //
     }
@@ -60,7 +58,7 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Event $event)
+    public function destroy(Image $image)
     {
         //
     }
