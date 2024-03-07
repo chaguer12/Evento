@@ -9,9 +9,13 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Spatie\Permission\Traits\HasRoles;
+
 
 class AuthenticatedSessionController extends Controller
 {
+    use HasRoles;
+    
     /**
      * Display the login view.
      */
@@ -28,8 +32,23 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        $user = Auth::user();
+        if($user->roles->value('name') == 'Organizer'){
+            return redirect()->intended(RouteServiceProvider::ORGANIZER);
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        }elseif($user->roles->value('name') == 'Admin'){
+            return redirect()->intended(RouteServiceProvider::HOME);
+
+        }elseif($user->roles->value('name') == 'Client'){
+            return redirect()->intended(RouteServiceProvider::CLIENT);
+        }
+        
+        
+     
+            
+        
+      
+        
     }
 
     /**
