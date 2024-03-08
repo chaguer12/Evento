@@ -50,13 +50,20 @@ Route::get('/add-event', function () {
 })->name('add-event');
 Route::get('block-user', [AdminController::class, 'block'])->name('block-user');
 Route::get('unblock-user', [AdminController::class, 'unblock'])->name('unblock-user');
+Route::get('approve/{event_id}', [AdminController::class, 'approve'])->name('approve-event');
 Route::get('about',function(){
     return view('about');
 });
 Route::get('myevents',function(){
     $organizer = Organizer::where('user_id',Auth::user()->id)->first();
     $events = Event::where('org_id',$organizer->id)->get();
-    return view('organizer.myevents',compact('events'));
+    $categories = Categorie::all();
+    return view('organizer.myevents',compact('events','categories'));
+});
+Route::get('events',function(){
+    $events = Event::where('approved',0)->get();
+    return view('admin.events',compact('events'));
+
 });
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -20,7 +20,7 @@ class Event extends Model
         'org_id',
     ];
 
-    protected $with = ['image'];
+    protected $with = ['image','categorie'];
 
     public function categorie(){
         return $this->belongsTo(Categorie::class);

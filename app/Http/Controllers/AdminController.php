@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use App\Models\Categorie;
+use App\Models\Event;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -82,5 +83,13 @@ class AdminController extends Controller
         return redirect()->back();
         
 
+    }
+    public function approve(Request $request){
+        $id = $request->event_id;
+        $event = Event::find($id);
+        $event->approved = 1;
+        $event->save();
+        
+        return redirect()->back();
     }
 }

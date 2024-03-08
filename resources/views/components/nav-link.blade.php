@@ -22,4 +22,10 @@ $classes = ($active ?? false)
 
     </a>
 @endrole
+@role('Admin')
+    <a href="/events"{{ $attributes->merge(['class' => $classes]) }}>
+        Events
+
+    </a>
+@endrole
 
