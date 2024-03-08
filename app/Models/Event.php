@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Event extends Model
 {
@@ -19,12 +20,14 @@ class Event extends Model
         'org_id',
     ];
 
+    protected $with = ['image'];
+
     public function categorie(){
         return $this->belongsTo(Categorie::class);
 
     }
-    public function image()
+    public function image(): MorphOne
     {
-        return $this->hasOne(Image::class, 'imageable');
+        return $this->morphOne(Image::class, 'imageable');
     }
 }

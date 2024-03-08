@@ -17,7 +17,7 @@ $classes = ($active ?? false)
     </a>
 @endrole
 @role('Organizer')
-    <a href=""{{ $attributes->merge(['class' => $classes]) }}>
+    <a href="/myevents"{{ $attributes->merge(['class' => $classes]) }}>
         My events
 
     </a>

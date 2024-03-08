@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Image extends Model
 {
@@ -15,8 +16,8 @@ class Image extends Model
 
     ];
     
-    public function imageable()
+    public function imageable(): MorphTo
     {
-        return $this->belongsTo(Image::class)   ;
+        return $this->morphTo();
     }
 }

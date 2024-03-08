@@ -8,7 +8,9 @@ use App\Http\Controllers\OrganizerController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Categorie;
 use App\Models\Event;
+use App\Models\Organizer;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,6 +52,11 @@ Route::get('block-user', [AdminController::class, 'block'])->name('block-user');
 Route::get('unblock-user', [AdminController::class, 'unblock'])->name('unblock-user');
 Route::get('about',function(){
     return view('about');
+});
+Route::get('myevents',function(){
+    $organizer = Organizer::where('user_id',Auth::user()->id)->first();
+    $events = Event::where('org_id',$organizer->id)->get();
+    return view('organizer.myevents',compact('events'));
 });
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
