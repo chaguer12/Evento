@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EventRequest;
 use App\Models\Event;
+use App\Models\Organizer;
+use App\Models\User;
 use App\trait\ImageUpload;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -22,15 +26,36 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
-        //
+        
+        $accept = $request->auto_accept;
+        $organizer = Organizer::where('user_id', Auth::user()->id)->first();
+        if($accept == 'on'){
+            $accept = 1;
+
+        }else{
+            $accept = 0;
+        }
+        $event = Event::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'date' => $request->date,
+            'location' => $request->location,
+            'auto_accept' => $accept,
+            'cat_id' => $request->cat_id,
+            'org_id' => $organizer->id,
+
+        ]);
+        $this->storeImg($event,$request->file("image"));
+        return redirect()->back();
+        
     }
 
     /**

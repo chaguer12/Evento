@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\OrganizerController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Categorie;
@@ -24,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('event',EventController::class);
 Route::resource('categories', CategorieController::class);
 Route::resource('admin',AdminController::class);
 Route::resource('client',ClientController::class);
@@ -41,11 +43,14 @@ Route::get('/category', function () {
         return view('client.categorie',compact('categories'));
 })->name('category');
 Route::get('/add-event', function () {
-    return view('organizer.dashboard');
+    $categories = Categorie::all();
+    return view('organizer.dashboard',compact('categories'));
 })->name('add-event');
 Route::get('block-user', [AdminController::class, 'block'])->name('block-user');
 Route::get('unblock-user', [AdminController::class, 'unblock'])->name('unblock-user');
-
+Route::get('about',function(){
+    return view('about');
+});
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

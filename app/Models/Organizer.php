@@ -12,6 +12,8 @@ class Organizer extends User
         'user_id' => 'required',
     ];
 
+    
+
     public function user()
     {
         return $this->belongsTo(User::class);

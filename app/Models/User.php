@@ -47,6 +47,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    
+    // protected $with = [
+    //     'organizer',
+    //     'client',
+    //     'admin',
+    // ];
 
     public function organizer()
     {
