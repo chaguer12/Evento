@@ -76,7 +76,18 @@ Route::get('myevents',function(){
 });
 Route::get('events',function(){
     $events = Event::where('approved',0)->get();
-    return view('admin.events',compact('events'));
+
+    $totalEvents = Event::count();
+
+    
+    $approvedEvents = Event::where('approved', 1)
+                            ->count();
+
+   
+    $notApprovedEvents = Event::where('approved', 0)
+                                ->count();
+    
+    return view('admin.events',compact('events','totalEvents','approvedEvents','notApprovedEvents'));
 
 });
 Route::middleware('auth')->group(function () {
