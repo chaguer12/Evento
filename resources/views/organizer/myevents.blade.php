@@ -43,7 +43,7 @@
                 <form action="{{ route('event.destroy', $event->id) }}" method="POST" class="inline">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="text-red-600 hover:text-red-900 ml-2">Delete</button>
+                    <button type="submit" onclick="return confirm('Are you sure to delete?')"class="text-red-600 hover:text-red-900 ml-2">Delete</button>
                 </form>
             </td>
         </tr>
@@ -56,7 +56,7 @@
             </div>
         </div>
     </div>
-    <div id="modal" class="hidden min-w-screen h-screen animated fadeIn faster   fixed  left-0 top-0  inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover">
+    <div id="modal" class="hidden bg-white min-w-screen h-screen animated fadeIn faster   fixed  left-0 top-0  inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover">
     <form id="edit-form" action="{{route('event.update',['event' => $event->id])}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -90,7 +90,7 @@
                             <input class="rounded-lg shadow-lg border-[#4338ca]" name="image" type="file">
                             <p class="mt-1 text-sm text-gray-500 " id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
                         </div>
-                        
+                        <input hidden id="targeted_spec" type="text" name="id" value="">
                         <div class="mb-4 flex flex-col w-1/2 mx-auto">
                             <label for="auto accept">Auto accept</label>
                             <input checked type="checkbox"  name="auto accept" id="auto accept" class="rounded-lg shadow-lg border-[#4338ca]" placeholder="auto accept">

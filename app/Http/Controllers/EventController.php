@@ -77,9 +77,30 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Event $event)
+    public function update(EventRequest $request, Event $event)
     {
-        //
+        $event_id  = $request->id;
+        $accept = $request->auto_accept;
+        $organizer = Organizer::where('user_id', Auth::user()->id)->first();
+        if($accept == 'on'){
+            $accept = 1;
+
+        }else{
+            $accept = 0;
+        }
+        $event = Event::where('id',$event_id)->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'date' => $request->date,
+            'location' => $request->location,
+            'auto_accept' => $accept,
+            'cat_id' => $request->cat_id,
+            'org_id' => $organizer->id,
+    ]);
+        $event = Event::find($event_id);
+        $this->updateImg($event, $request->file('image'));
+        return redirect()->back();
+        
     }
 
     /**
@@ -87,7 +108,10 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        
+        if(Event::destroy($event->id)){
+            return redirect()->back();
+        }
     }
 
     

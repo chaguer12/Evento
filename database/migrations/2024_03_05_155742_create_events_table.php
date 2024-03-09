@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->date('date');
             $table->string('location');
-            $table->boolean('approved')->default(0);
+            $table->boolean('approved')->default(0);    
             $table->boolean('auto_accept')->default(1);
             $table->unsignedBigInteger('cat_id');
             $table->foreign('cat_id')->references('id')->on('categories')->onDelete('cascade');
