@@ -58,7 +58,21 @@ Route::get('myevents',function(){
     $organizer = Organizer::where('user_id',Auth::user()->id)->first();
     $events = Event::where('org_id',$organizer->id)->get();
     $categories = Categorie::all();
-    return view('organizer.myevents',compact('events','categories'));
+    
+
+   
+    $totalEvents = Event::where('org_id', $organizer->id)->count();
+
+    
+    $approvedEvents = Event::where('org_id', $organizer->id)
+                            ->where('approved', 1)
+                            ->count();
+
+   
+    $notApprovedEvents = Event::where('org_id', $organizer->id)
+                                ->where('approved', 0)
+                                ->count();
+    return view('organizer.myevents',compact('events','categories','notApprovedEvents','approvedEvents','totalEvents'));
 });
 Route::get('events',function(){
     $events = Event::where('approved',0)->get();
