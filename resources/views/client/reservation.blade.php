@@ -21,7 +21,7 @@
                         <p class="text-sm">Date: <span class="text-gray-500">{{ $event->date }}</span></p>
                     </div>
                     <div>
-                        <button type="submit" class="bg-[#4338ca] text-white px-4 py-2 rounded-md hover:bg-indigo-700">Book now</button>
+                        <a href="" type="submit" class="bg-[#4338ca] text-white px-4 py-2 rounded-md hover:bg-indigo-700">Book now</a>
                     </div>
                 </div>
             </div>
