@@ -22,6 +22,12 @@ $classes = ($active ?? false)
 
     </a>
 @endrole
+@role('Organizer')
+    <a href="{{route('reservation.index')}}"{{ $attributes->merge(['class' => $classes]) }}>
+       Reservations
+
+    </a>
+@endrole
 @role('Admin')
     <a href="/events"{{ $attributes->merge(['class' => $classes]) }}>
         Events

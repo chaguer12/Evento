@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\Event;
+use App\Models\Organizer;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,9 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        $organizer = Organizer::where('user_id',Auth::user()->id)->first();
+        $reservations = Reservation::where('accepted',0)->where('org_id',$organizer->id)->get();
+        return view('organizer.reservations',compact('reservations'));
     }
 
     /**
@@ -32,13 +35,13 @@ class ReservationController extends Controller
     {
         $event_id = $request->event;
         $event = Event::find($event_id);
-        $client_id = Client::where('user_id',Auth::user()->id)->first();
+        $client = Client::where('user_id',Auth::user()->id)->first();
         
         if($event->auto_accept == 0){
             $reservation = Reservation::create([
                 'event_id' => $event_id,
                 'org_id' =>  $event->org_id,
-                'client_id' => $client_id->id,
+                'client_id' => $client->id,
                 'accepted' => 0,
                  
             ]);
@@ -47,7 +50,7 @@ class ReservationController extends Controller
             $reservation = Reservation::create([
                 'event_id' => $event_id,
                 'org_id' =>  $event->org_id,
-                'client_id' => $client_id->id,
+                'client_id' => $client->id,
                 'accepted' => 1,
                  
             ]);
@@ -87,5 +90,17 @@ class ReservationController extends Controller
     public function destroy(Reservation $reservation)
     {
         //
+    }
+    public function accept_(Request $request){
+        
+        $reservation = Reservation::find($request->reservation);
+        $reservation->update(['accepted' => 1]);
+        return redirect()->back();
+    }
+
+    public function refuse_(Request $request){
+        $reservation = Reservation::find($request->reservation);
+        $reservation->update(['accepted' => 0]);
+        return redirect()->back();
     }
 }

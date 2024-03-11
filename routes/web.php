@@ -96,6 +96,8 @@ Route::get('events',function(){
 Route::get('/restricted',function(){
     return view('restricted');
 });
+Route::get('accept',[ReservationController::class,'accept_'])->name('accept');
+Route::get('refuse',[ReservationController::class,'refuse_'])->name('refuse');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -16,7 +16,7 @@ class Reservation extends Model
         'accepted',
     ];
 
-    // protected $with = ['event','organizer','reservation'];
+    protected $with = ['event','organizer','client'];
 
     public function event(){
         return $this->belongsTo(Event::class);
