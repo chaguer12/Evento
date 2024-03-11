@@ -2,7 +2,6 @@
 <html lang="en">
 @include('includes.head')
 <body class="bg-[#f3f4f6]">
-
 <section class="py-16">
     <h2 class="mb-5 font-sans text-3xl text-center mt-8 font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">Book your event easily</h2>
 <div class="max-w-4xl mx-auto p-4 sm:px-6 lg:px-8">
@@ -21,7 +20,12 @@
                         <p class="text-sm">Date: <span class="text-gray-500">{{ $event->date }}</span></p>
                     </div>
                     <div>
-                        <a href="" type="submit" class="bg-[#4338ca] text-white px-4 py-2 rounded-md hover:bg-indigo-700">Book now</a>
+                        <form action="{{route('reservation.store')}}" method="post">
+                            @csrf
+                            @method('POST')
+                            <input hidden type="text" name="event" value="{{$event->id}}" name="" id="">
+                            <button type="submit" class="bg-[#4338ca] text-white px-4 py-2 rounded-md hover:bg-indigo-700">Book now</button>
+                        </form>
                     </div>
                 </div>
             </div>

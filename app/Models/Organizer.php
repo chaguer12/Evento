@@ -22,4 +22,8 @@ class Organizer extends User
     public function event(){
         return $this->hasMany(Event::class);
     }
+
+    public function reservation(){
+        return $this->hasMany(Reservation::class);
+    }
 }

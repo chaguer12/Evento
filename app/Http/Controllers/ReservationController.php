@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
+use App\Models\Event;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
@@ -20,7 +23,6 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -28,7 +30,31 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $event_id = $request->event;
+        $event = Event::find($event_id);
+        $client_id = Client::where('user_id',Auth::user()->id)->first();
+        
+        if($event->auto_accept == 0){
+            $reservation = Reservation::create([
+                'event_id' => $event_id,
+                'org_id' =>  $event->org_id,
+                'client_id' => $client_id->id,
+                'accepted' => 0,
+                 
+            ]);
+            return redirect()->back();
+        }elseif($event->auto_accept == 1){
+            $reservation = Reservation::create([
+                'event_id' => $event_id,
+                'org_id' =>  $event->org_id,
+                'client_id' => $client_id->id,
+                'accepted' => 1,
+                 
+            ]);
+            return redirect()->back();
+
+        }
+        
     }
 
     /**

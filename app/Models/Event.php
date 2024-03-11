@@ -36,4 +36,8 @@ class Event extends Model
     public function organizer(){
         return $this->belongsTo(Organizer::class);
     }
+
+    public function reservation(){
+        return $this->hasMany(Reservation::class);
+    }
 }
