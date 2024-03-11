@@ -63,7 +63,8 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        $event = Event::find($event->id);
+        return view('client.reservation',compact('event'));
     }
 
     /**

@@ -27,14 +27,14 @@
                         <div class="bg-white  overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-4 text-gray-900 h-full">
                                 <div class="h-96">
-                                    <img class="h-1/2 w-full shadow-lg rounded-md" src="{{asset('storage/'.$event->image->path)}}" alt="profile image">
+                                    <img class="h-1/3 w-full shadow-lg rounded-md" src="{{asset('storage/'.$event->image->path)}}" alt="profile image">
                                     <h1 class="font-bold mt-4">{{$event->title}}</h1>
                                     <p class="mt-4">{{substr($event->description,0,150)}}...</p>
                                     <p class="text-gray-500 mt-4">{{$event->location}}</p>
                                     
                                     <div class="flex justify-between mt-2 ">
                                         <div><p class="text-sm ">Date: <span class="text-gray-500">{{$event->date}}</span></p></div>
-                                        <div><button class="bg-[#4338ca] text-white text-center p-1 rounded-lg hover:shadow-lg">Check event</button></div>
+                                        <div><a href="{{route('event.show',['event' => $event->id])}}" class="bg-[#4338ca] text-white text-center p-2 rounded-lg hover:shadow-lg">Check event</a></div>
                                      
                                     </div>
                                 </div>

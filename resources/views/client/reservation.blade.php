@@ -4,38 +4,32 @@
 <body class="bg-[#f3f4f6]">
 
 <section class="py-16">
-<div class="max-w-xl p-4 sm:px-6 lg:px-8">
-    <div class="bg-white  overflow-hidden shadow-sm sm:rounded-lg">
-        <div class="p-6 text-gray-900 flex">
-            <div>
-                <img class="h-16 shadow-lg rounded-md" src="{{ asset('images/storage/'.$doctor->image) }}" alt="profile image">
-                <h1 class="font-bold">{{ $doctor->User->username }}</h1>
-                <p>{{ substr($doctor->description, 0, 100) }}...</p>
-                <p class="text-gray-500">{{ $doctor->User->email }}</p>
-                <p class="text-sm">Member since: <span class="text-gray-500">{{ $doctor->created_at }}</span></p>
-                <div class="">
-                    <svg class="mt-2" xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#B197FC" d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8v-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5v3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20c0 0-.1-.1-.1-.1c0 0 0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5v3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2v-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z"/></svg>
-                </div>
+    <h2 class="mb-5 font-sans text-3xl text-center mt-8 font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">Book your event easily</h2>
+<div class="max-w-4xl mx-auto p-4 sm:px-6 lg:px-8">
+    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-6 text-gray-900 flex items-center">
+            <div class="w-1/2 mr-6">
+                <img class="w-full shadow-lg rounded-md" src="{{ asset('storage/'.$event->image->path) }}" alt="profile image">
             </div>
-            <div class="flex flex-col justify-between">
+            <div class="w-1/2">
+                <h1 class="font-bold">{{ $event->title }}</h1>
+                <p class="mt-2">{{ $event->description }}</p>
+                <p class="text-gray-500 mt-2">Location: <span>{{ $event->location }}</span></p>
                 
-                <div>
-                <label for="times" class="text-center block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select a time</label>
-                <select id="times" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-24 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    @foreach($times as $time)
-                    <option value="{{$time}}">{{$time}}</option>
-                    @endforeach
-                </select>
-                </div>
-                <div>
-                    <!-- Button to submit the form -->
-                <button type="submit" class="bg-[#4338ca] text-white px-4 py-2 ml-4 rounded-md hover:bg-indigo-700">Book now</button>
+                <div class="flex justify-between mt-4">
+                    <div>
+                        <p class="text-sm">Date: <span class="text-gray-500">{{ $event->date }}</span></p>
+                    </div>
+                    <div>
+                        <button type="submit" class="bg-[#4338ca] text-white px-4 py-2 rounded-md hover:bg-indigo-700">Book now</button>
+                    </div>
                 </div>
             </div>
-     
         </div>
     </div>
 </div>
+
+
 
 </section>
 
