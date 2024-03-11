@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CategorieRequest;
 use App\Models\Categorie;
+use App\Models\Event;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -22,9 +23,21 @@ class CategorieController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        
+        $cat_id = $request->cat_id;
+        $events = Event::where('cat_id',$cat_id)->where('approved',1)->get();
+        
+        if($events->count() == 0){
+            $message = 'No events has been, please try later';
+            return view('client.events',compact('events','message'));
+        }else{
+            $message = '';
+            return view('client.events',compact('events','message'));
+        }
+        
+
     }
 
     /**

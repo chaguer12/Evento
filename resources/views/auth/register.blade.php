@@ -45,6 +45,7 @@
                 <option value="" disabled selected>Select a role</option>
                 <option value="organizer">Organizer</option>
                 <option value="client">Client</option>
+                <option disabled value="admin">Admin</option>
             </select>
         </div>
 

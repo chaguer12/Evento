@@ -20,6 +20,7 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/dashboard';
     public const ORGANIZER = '/';
     public const CLIENT = '/';
+    public const RESTRICTED = '/restricted';
 
     
 

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger('org_id');
             $table->foreign('org_id')->references('id')->on('organizers')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

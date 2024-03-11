@@ -70,6 +70,16 @@ class RegisteredUserController extends Controller
                 'user_id' => $user->id,
             ]);
                         
+        }elseif($request->role === 'admin'){
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+            $user->AssignRole('Admin');
+            $user->admin()->create([
+                'user_id' => $user->id,
+            ]);
         }
         
 

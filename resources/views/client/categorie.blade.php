@@ -49,7 +49,7 @@ Choose from a variety of categories
  <section  class="flex flex-wrap gap-4">
 @foreach($categories as $categorie)
  <div class="max-w-xs mx-auto">
-    <a href="{{route('categories.create',['category_id' => $categorie ])}}" class="block relative bg-white border border-[#a78bfa] rounded-lg overflow-hidden hover:border-gray-300 hover:bg-white hover:shadow-md">
+    <a href="{{route('categories.create',['cat_id' => $categorie->id ])}}" class="block relative bg-white border border-[#a78bfa] rounded-lg overflow-hidden hover:border-gray-300 hover:bg-white hover:shadow-md">
         <div class="p-6">
             <p class="text-base text-gray-600">{{$categorie->cat_name}}</p>
             <p class="text-sm text-gray-500">Card description with lots of great facts and interesting details.</p>

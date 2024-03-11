@@ -90,6 +90,9 @@ Route::get('events',function(){
     return view('admin.events',compact('events','totalEvents','approvedEvents','notApprovedEvents'));
 
 });
+Route::get('/restricted',function(){
+    return view('restricted');
+});
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

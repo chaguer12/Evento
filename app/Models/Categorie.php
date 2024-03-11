@@ -13,6 +13,8 @@ class Categorie extends Model
         'cat_name',
     ];
 
+    
+
     public function event(){
         return $this->hasMany(Event::class);
     }
