@@ -26,6 +26,11 @@ class ReservationController extends Controller
      */
     public function create()
     {
+        if(Auth::user() ){
+            $client = Client::where('user_id',Auth::user()->id)->first();
+            $tickets = Reservation::where('client_id',$client->id)->where('accepted',1)->get();
+            return view('client.mytickets',compact('tickets'));
+        }
     }
 
     /**
@@ -91,8 +96,7 @@ class ReservationController extends Controller
     {
         //
     }
-    public function accept_(Request $request){
-        
+    public function accept_(Request $request){        
         $reservation = Reservation::find($request->reservation);
         $reservation->update(['accepted' => 1]);
         return redirect()->back();
